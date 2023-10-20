@@ -152,7 +152,7 @@ RUN set -x && \
 # create a conda environment install pyfmi for load fmu 
 RUN conda update conda && \
     conda config --add channels conda-forge && \
-    conda install pyfmi pandas matplotlib && \
+    conda install pyfmi pandas matplotlib ipykernel && \
     conda clean -afy
 
 # activate conda environment
