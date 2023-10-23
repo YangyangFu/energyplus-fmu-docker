@@ -2993,8 +2993,8 @@
 
   ThermostatSetpoint:DualSetpoint,
     thermostat_living Dual SP Control,  !- Name
-    heating_sch,             !- Heating Setpoint Temperature Schedule Name
-    cooling_sch;             !- Cooling Setpoint Temperature Schedule Name
+    fmu_hsp,             !- Heating Setpoint Temperature Schedule Name
+    fmu_csp;             !- Cooling Setpoint Temperature Schedule Name
 
 !- HPWH curves taken from E+ example file.
 !- Heating Capacity as a Function of Temperature Curve (Air Wet-bulb T, Condenser Water Inlet T)
@@ -5559,6 +5559,12 @@ Output:Variable,
     Zone Air Temperature,    !- Variable Name
     Timestep;                !- Reporting Frequency
 
+Output:Variable,
+    Whole Building,                       !- Key Value
+    Facility Total HVAC Electricity Demand Rate ,  !- Variable Name
+    Timestep;                  !- Reporting Frequency
+
+
 !-   ===========  ALL OBJECTS IN CLASS: EXTERNALINTERFACE ===========
 
 ExternalInterface,
@@ -5571,4 +5577,23 @@ ExternalInterface:FunctionalMockupUnitExport:From:Variable,
     living_unit1,            !- Output:Variable Index Key Name
     Zone Air Temperature,    !- Output:Variable Name
     zone_temp;               !- FMU Variable Name
+
+ExternalInterface:FunctionalMockupUnitExport:From:Variable,
+    Whole Building,                       !- Output:Variable Index Key Name
+    Facility Total HVAC Electricity Demand Rate ,  !- Output:Variable Name
+    hvac_power;                    !- FMU Variable Name
+
+!-   ===========  ALL OBJECTS IN CLASS: EXTERNALINTERFACE:FUNCTIONALMOCKUPUNITEXPORT:TO:SCHEDULE ===========
+
+ExternalInterface:FunctionalMockupUnitExport:To:Schedule,
+    fmu_csp,                 !- Schedule Name
+    Temperature,             !- Schedule Type Limits Names
+    csp,                     !- FMU Variable Name
+    24;                      !- Initial Value
+
+ExternalInterface:FunctionalMockupUnitExport:To:Schedule,
+    fmu_hsp,                 !- Schedule Name
+    Temperature,             !- Schedule Type Limits Names
+    hsp,                     !- FMU Variable Name
+    22;                      !- Initial Value
 
