@@ -143,10 +143,10 @@ SizingPeriod:DesignDay,
 
 RunPeriod,
     annual,                  !- Name
-    1,                       !- Begin Month
+    6,                       !- Begin Month
     1,                       !- Begin Day of Month
     ,                        !- Begin Year
-    1,                       !- End Month
+    8,                       !- End Month
     31,                      !- End Day of Month
     ,                        !- End Year
     Sunday,                  !- Day of Week for Start Day
@@ -5897,7 +5897,22 @@ OutputControl:Table:Style,
 Output:Variable,
     *,                       !- Key Value
     Facility Total HVAC Electricity Demand Rate ,  !- Variable Name
-    Hourly;                  !- Reporting Frequency
+    Timestep;                !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Site Outdoor Air Drybulb Temperature ,  !- Variable Name
+    Timestep;                !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Zone Mean Air Temperature ,  !- Variable Name
+    Timestep;                !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Site Direct Solar Radiation Rate per Area ,  !- Variable Name
+    Timestep;                !- Reporting Frequency
 
 
 !-   ===========  ALL OBJECTS IN CLASS: OUTPUT:METER ===========
